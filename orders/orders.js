@@ -71,7 +71,7 @@ app.get("/order/:id", (req, res) => {
     });
 });
 app.get('/',(req, res) => {
-  res.status(200).send(`Order Version 1 and Running on port ${port}`);
+  res.status(200).send(`/ Order Version 1 and Running on port ${port}`);
 });
 
 app.listen(port, () => {

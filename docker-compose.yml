@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 services:
     dev-micro-demo:
       build:
@@ -14,13 +14,11 @@ services:
        - ./.env:/usr/src/app/.env
        - ./:/usr/src/app
     webserver:
-      image: nginx:mainline-alpine
-      container_name: webserver
-      restart: unless-stopped
+      restart: always
+      build:
+        context: ./nginx
       ports:
         - "1100:80"
-      volumes:
-        - ./nginx/nginx-conf:/etc/nginx/conf.d
       depends_on:
         - dev-micro-demo
     # redis:
