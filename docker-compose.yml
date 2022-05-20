@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+    dev-micro-demo:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      restart: always
+      container_name: "dev-micro-demo"
+      ports:
+       - 127.0.0.1:1101:1101
+       - 127.0.0.1:1102:1102
+       - 127.0.0.1:1103:1103
+      volumes:
+       - ./.env:/usr/src/app/.env
+       - ./:/usr/src/app
+    webserver:
+      image: nginx:mainline-alpine
+      container_name: webserver
+      restart: unless-stopped
+      ports:
+        - "1100:80"
+      volumes:
+        - ./nginx/nginx-conf:/etc/nginx/conf.d
+      depends_on:
+        - dev-micro-demo
+    # redis:
+    #   image: "redis:alpine"
+    #   command: "redis-server --requirepass"
+    # mongo:
+    #   image: "mongo"
+    #   ports:
+    #    - 27017:27017
+networks:
+    default:
+      external:
+        name: sajadweb

@@ -7,7 +7,7 @@ require('../db/db');
 const Customer = require('./Customer');
 
 const app = express();
-const port = 5000;
+const port = process.env.CUSTOMER_PORT;;
 app.use(express.json())
 
 app.post('/customer', (req, res) => {
@@ -55,6 +55,9 @@ app.delete('/customer/:id', (req, res) => {
   });
 });
 
+app.get('/',(req, res) => {
+  res.status(200).send(`Customer Version 1 and Running on port ${port}`);
+});
 app.listen(port, () => {
   console.log(`Up and Running on port ${port}- This is Customer service`);
 })

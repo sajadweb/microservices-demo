@@ -7,7 +7,7 @@ require('../db/db');
 const Book = require('./Book');
 
 const app = express();
-const port = 3000;
+const port = process.env.BOOK_PORT;
 app.use(express.json())
 
 app.post('/book', (req, res) => {
@@ -55,6 +55,9 @@ app.delete('/book/:id', (req, res) => {
   });
 });
 
+app.get('/',(req, res) => {
+  res.status(200).send(`Book Version 1 and Running on port ${port}`);
+});
 app.listen(port, () => {
   console.log(`Up and Running on port ${port} - This is Book service`);
 })
