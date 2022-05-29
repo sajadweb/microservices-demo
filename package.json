@@ -7,17 +7,17 @@
     "logs": "docker logs -f dev-micro-demo",
     "up": "docker-compose build && docker-compose up -d",
     "down": "docker-compose down --volumes",
-    "prod": "concurrently  \"npm run dev-book\" \"npm run dev-customer\" \"npm run dev-order\"",
+    "prod": "concurrently \"npm run dev-grpc\" \"npm run dev-book\" \"npm run dev-customer\" \"npm run dev-order\"",
     "dev-book": "nodemon books/books.js",
     "dev-customer": "nodemon customers/customers.js",
     "dev-order": "nodemon orders/orders.js",
-    "prod-book": "node books/books.js",
-    "prod-customer": "node customers/customers.js",
-    "prod-order": "node orders/orders.js"
+    "dev-grpc": "nodemon grpc/server.js"
   },
   "author": "Happy Bhesdadiya",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.6.7",
+    "@grpc/proto-loader": "^0.6.12",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",

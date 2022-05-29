@@ -15,6 +15,7 @@ COPY .env.dev .env
 EXPOSE 1101
 EXPOSE 1102
 EXPOSE 1103
+EXPOSE 1104
 RUN chmod +x ./entrypoint.sh
 
 # CMD npm run run:dev
